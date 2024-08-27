@@ -37,4 +37,3 @@ git commit -m "Add a meaningful commit message"
 
 git fetch origin main
 git merge origin/main
-
