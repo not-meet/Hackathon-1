@@ -31,4 +31,4 @@ git checkout -b your-branch-name
 ### 5. To commit changes 
 
 git add .
-git commit 
+git commit
