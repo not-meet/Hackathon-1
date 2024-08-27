@@ -31,9 +31,4 @@ git checkout -b your-branch-name
 ### 5. To commit changes 
 
 git add .
-git commit -m "Add a meaningful commit message"
-
-### 6. TO fetch and merge
-
-git fetch origin main
-git merge origin/main
+git commit 
