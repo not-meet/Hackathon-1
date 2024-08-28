@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '../../../lib/db';
 import Mentee from '../../../lib/models/mentee';
-import { menteeSigninSchema } from '../../../validations/mentee.ts'; // Or import from a new file
+import { menteeSigninSchema } from '../../../validations/mentee'; // Or import from a new file
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { ZodError } from 'zod';
