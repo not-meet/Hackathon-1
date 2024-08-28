@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import dbConnect from '../../../../lib/db';
-import Mentor from '../../../../lib/models/mentor';
-import { authenticate } from '../../../../middlewares/auth';
+import dbConnect from '../../../lib/db';
+import Mentor from '../../../lib/models/mentor';
+import { authenticate } from '../../../middlewares/auth';
 
 const deleteMentorProfileHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
