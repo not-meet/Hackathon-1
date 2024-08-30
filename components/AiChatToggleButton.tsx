@@ -17,7 +17,7 @@ const AiChatToggleButton: React.FC = () => {
     if (!question.trim()) return; // Don't make the API call if the question is empty
     try {
       setLoading(true);
-      const { data } = await axios.post('/api/ai/query', { message: question });
+      const { data } = await axios.post('http://localhost:3000/api/ai/query', { message: question });
       setAiResponse(data.reply);
       setLoading(false);
     } catch (error) {
