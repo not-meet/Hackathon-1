@@ -1,21 +1,27 @@
-// pages/api/home.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import dbConnect from '@/lib/db'; // Adjust the path as needed
-import Mentor from '@/lib/models/mentor';
+import dbConnect from '../../lib/db';
+import Mentor from '../../lib/models/mentor';
+import { authenticate } from '../../middlewares/auth';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+const allMentorsHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
 
+  // Get all mentor profiles
   if (req.method === 'GET') {
     try {
-      const mentors = await Mentor.find();
+      const mentors = await Mentor.find({});
       res.status(200).json(mentors);
     } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch mentors' });
+      return res.status(500).json({ error: 'Failed to fetch mentor profiles' });
     }
-  } else {
-    res.setHeader('Allow', ['GET']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-}
+
+  // Method not allowed
+  else {
+    res.setHeader('Allow', ['GET']);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
+};
+
+export default authenticate(allMentorsHandler);
 

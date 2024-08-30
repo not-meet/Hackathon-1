@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 const reviews = [
   {
@@ -23,7 +24,18 @@ const reviews = [
   },
 ];
 
-const HomePage: React.FC = () => {
+type Mentor = {
+  id: number;
+  name: string;
+  image: string;
+  description: string;
+};
+
+type HomePageProps = {
+  mentors: Mentor[];
+};
+
+const HomePage: React.FC<HomePageProps> = ({ mentors = [] }) => {
   return (
     <div className="min-h-screen bg-base-100">
       {/* Navbar */}
@@ -71,21 +83,21 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Carousel of Cards */}
+      {/* Dynamic Carousel of Cards */}
       <div className="carousel carousel-center rounded-box gap-4 p-4 w-full">
-        {Array(6).fill(null).map((_, index) => (
-          <div key={index} className="carousel-item w-72 h-96">
+        {mentors.map((mentor) => (
+          <div key={mentor.id} className="carousel-item w-72 h-96">
             <div className="card bg-base-100 shadow-xl hover:scale-105 transform transition-transform duration-300">
               <figure className="px-4 pt-6">
                 <img
-                  src="/man2.jpg"
-                  alt="Mentor"
+                  src={mentor.image}
+                  alt={mentor.name}
                   className="rounded-xl h-fit w-fit shadow-green-100"
                 />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title text-black">Mentor Name {index + 1}</h2>
-                <p className="text-gray-600">If a dog chews shoes whose shoes does he choose?</p>
+                <h2 className="card-title text-black">{mentor.name}</h2>
+                <p className="text-gray-600">{mentor.description}</p>
                 <div className="card-actions">
                   <button className="btn bg-slate-500 text-white hover:bg-black hover:shadow-black">Visit Now</button>
                 </div>
@@ -112,7 +124,6 @@ const HomePage: React.FC = () => {
           />
         </div>
       </div>
-
 
       <div className="flex mt-10 m-3 items-center justify-between bg-gradient-to-r from-purple-600 to-blue-300 h-72 shadow-lg rounded-lg p-6">
         <div className="flex-shrink-0 w-1/3 h-full">
@@ -160,11 +171,9 @@ const HomePage: React.FC = () => {
           </div>
         </div>
 
-
         {/* Cards Section */}
         <div className="flex flex-row items-center justify-center align-bottom gap-6">
           {/* Left Card */}
-
           <div className='card w-28 h-28 bg-slate-100 shadow-xl hover:scale-105 transform transition-transform duration-300'></div>
           <div className="card w-80 h-96 bg-slate-100 shadow-xl hover:scale-105 transform transition-transform duration-300">
             <div className="card-body text-center">
@@ -224,4 +233,23 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
+// Fetch data for SSR
+export const getServerSideProps = async () => {
+  try {
+    const { data } = await axios.get<Mentor[]>('http://localhost:3000/api/home');
+    return {
+      props: {
+        mentors: data,
+      },
+    };
+  } catch (error) {
+    console.error('Failed to fetch mentors:', error);
+    return {
+      props: {
+        mentors: [],
+      },
+    };
+  }
+};
 
