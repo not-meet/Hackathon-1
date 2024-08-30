@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 
 // Hardcoded OpenAI API key
-const OPENAI_API_KEY = 'sk-4N7j5R5d-DBg-aMwHBTwvavYSnWcnOl5dezb_McP0gT3BlbkFJ6mjSE2YDFO7F7KWfFn4jQND5W-mIJbmu-alKrLk8QA';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 const queryAI = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
