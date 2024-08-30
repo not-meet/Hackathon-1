@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
             <div className="card bg-base-100 shadow-xl hover:scale-105 transform transition-transform duration-300">
               <figure className="px-4 pt-6">
                 <img
-                  src="/profile.png"
+                  src="/man2.jpg"
                   alt="Mentor"
                   className="rounded-xl h-fit w-fit shadow-green-100"
                 />
