@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import AiChatToggleButton from '../components/AiChatToggleButton';
 const reviews = [
   {
     id: 1,
@@ -228,6 +228,9 @@ const HomePage: React.FC<HomePageProps> = ({ mentors = [] }) => {
           ))}
         </div>
       </div>
+
+      <AiChatToggleButton />
+
     </div>
   );
 };
