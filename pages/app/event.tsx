@@ -19,7 +19,7 @@ export default function EventsPage() {
             date: "August 15, 2023",
             venue: "Bangalore International Convention Centre, Bangalore",
             price: "₹1,500",
-            image: "/placeholder.svg?height=400&width=600&text=Career+Crossroads",
+            image: "https://img.freepik.com/free-photo/serious-creative-professionals-studying-project_1262-17525.jpg?t=st=1725066278~exp=1725069878~hmac=a99aff508061e3e99936f6dfcc921dd46d172eac60292a861af6fb8ee5c19649&w=996",
         },
         {
             title: "Empowering Women in Leadership",
@@ -28,7 +28,7 @@ export default function EventsPage() {
             date: "September 22, 2023",
             venue: "Hyderabad International Convention Centre, Hyderabad",
             price: "₹2,000",
-            image: "/placeholder.svg?height=400&width=600&text=Women+Leadership",
+            image: "https://img.freepik.com/free-photo/business-women-smiling-each-other_23-2148416422.jpg?t=st=1725066323~exp=1725069923~hmac=2b5307030a9549a9d6f8a7c4223d65a8799c7ba3092a26b0c30e174d60fa1b1a&w=996",
         },
         {
             title: "Balancing Ambition and Well-being",
@@ -37,7 +37,7 @@ export default function EventsPage() {
             date: "October 5, 2023",
             venue: "Jio World Convention Centre, Mumbai",
             price: "₹1,200",
-            image: "/placeholder.svg?height=400&width=600&text=Work+Life+Balance",
+            image: "https://img.freepik.com/free-photo/group-adult-men-working-office_23-2148483881.jpg?t=st=1725066353~exp=1725069953~hmac=fa2d3676ee9935d3a7eb662fd3c87ac0a3605bc0e4f61c2ff77b4c749b288540&w=826",
         },
         {
             title: "Tech Careers of the Future",
@@ -46,7 +46,25 @@ export default function EventsPage() {
             date: "November 18, 2023",
             venue: "India Habitat Centre, New Delhi",
             price: "₹1,800",
-            image: "/placeholder.svg?height=400&width=600&text=Future+Tech+Careers",
+            image: "https://img.freepik.com/premium-photo/customer-relationship-management-system-modish-computer-crm-business-enterprise_31965-208109.jpg?w=1060",
+        },
+        {
+            title: "Tech Careers of the Future",
+            description:
+                "Explore emerging tech fields, required skills, and how to position yourself for success in the rapidly evolving technological landscape.",
+            date: "November 18, 2023",
+            venue: "India Habitat Centre, New Delhi",
+            price: "₹1,800",
+            image: "https://img.freepik.com/free-psd/new-year-celebration-post-social-media-template_505751-4866.jpg?semt=ais_hybrid    ",
+        },
+        {
+            title: "Tech Careers of the Future",
+            description:
+                "Explore emerging tech fields, required skills, and how to position yourself for success in the rapidly evolving technological landscape.",
+            date: "November 18, 2023",
+            venue: "India Habitat Centre, New Delhi",
+            price: "₹1,800",
+            image: "https://img.freepik.com/free-vector/elegant-event-party-banner-with-black-splash_1361-2171.jpg?semt=ais_hybrid",
         },
     ];
 
@@ -56,7 +74,7 @@ export default function EventsPage() {
             <main className="flex-1">
                 <section className="relative w-full h-[60vh] min-h-[400px] overflow-hidden">
                     <Image
-                        src="/placeholder.svg?height=1080&width=1920&text=Guiding+Your+Journey"
+                        src="https://img.freepik.com/free-photo/back-view-crowd-fans-watching-live-performance-music-concert-night-copy-space_637285-544.jpg?semt=ais_hybrid"
                         alt="Guiding Your Journey"
                         layout="fill"
                         objectFit="cover"
