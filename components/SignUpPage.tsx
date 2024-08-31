@@ -172,7 +172,7 @@ export default function SignUpPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/signup', formData);
+      const response = await axios.post('http://localhost/api/auth/mentorSignup', formData);
       console.log('Response:', response.data);
       // Handle successful submission (e.g., redirect, display a message, etc.)
     } catch (error) {

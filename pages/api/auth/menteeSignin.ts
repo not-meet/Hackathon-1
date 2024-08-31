@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { ZodError } from 'zod';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = 'hello';
 
 const menteeSigninHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   await dbConnect();
