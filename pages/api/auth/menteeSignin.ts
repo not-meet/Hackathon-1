@@ -13,7 +13,6 @@ const menteeSigninHandler = async (req: NextApiRequest, res: NextApiResponse) =>
 
   if (req.method === 'POST') {
     try {
-      // Validate the request body directly
       menteeSigninSchema.parse(req.body);
 
       const { email, password } = req.body;

@@ -1,19 +1,17 @@
 // models/Seminar.ts
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
-// Define the Seminar interface extending Mongoose Document
 interface ISeminar extends Document {
   title: string;
   description: string;
   date: Date;
   isPaid: boolean;
-  price?: number; // Optional, only if isPaid is true
-  mentorId: mongoose.Schema.Types.ObjectId; // Reference to the mentor who created the seminar
+  price?: number;
+  mentorId: mongoose.Schema.Types.ObjectId;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-// Define the Seminar Schema
 const SeminarSchema: Schema<ISeminar> = new Schema(
   {
     title: { type: String, required: true },
@@ -26,7 +24,6 @@ const SeminarSchema: Schema<ISeminar> = new Schema(
   { timestamps: true }
 );
 
-// Define and export the Seminar model
 const Seminar: Model<ISeminar> = mongoose.model<ISeminar>('Seminar', SeminarSchema);
 export default Seminar;
 

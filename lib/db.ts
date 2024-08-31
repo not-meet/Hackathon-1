@@ -10,7 +10,6 @@ if (!MONGODB_URI) {
   );
 }
 
-// Extend the global object to include the mongoose cache
 declare global {
   var mongoose: {
     conn: mongoose.Connection | null;
@@ -18,7 +17,6 @@ declare global {
   };
 }
 
-// Initialize the cache object
 let cached = global.mongoose;
 
 if (!cached) {
@@ -26,22 +24,18 @@ if (!cached) {
 }
 
 async function dbConnect(): Promise<mongoose.Connection> {
-  // If a connection already exists, return it
   if (cached.conn) {
     return cached.conn;
   }
 
-  // If no connection exists, create a new one
   if (!cached.promise) {
     const opts = {
       bufferCommands: false, // Prevent Mongoose from buffering commands when not connected
     };
 
-    // Store the promise for the connection
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => mongoose.connection);
   }
 
-  // Await the connection promise and store the connection
   cached.conn = await cached.promise;
   return cached.conn;
 }

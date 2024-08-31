@@ -7,10 +7,8 @@ const getBlogsHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === 'GET') {
     try {
-      // Find all mentors and return their blogs
       const mentors = await Mentor.find({}, 'blogs name').lean();
 
-      // Collect all blogs into an array
       const blogs = mentors.flatMap((mentor: any) =>
         mentor.blogs.map((blog: any) => ({
           mentorName: mentor.name,

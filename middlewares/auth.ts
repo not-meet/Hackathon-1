@@ -12,7 +12,7 @@ export const authenticate = (handler: NextApiHandler) => async (req: NextApiRequ
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    (req as any).user = decoded; // Attach user info to request
+    (req as any).user = decoded;
     return handler(req, res);
   } catch (error) {
     return res.status(401).json({ error: 'Invalid token' });

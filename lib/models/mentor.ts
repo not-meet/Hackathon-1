@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
-// Define the Mentor interface
 interface IMentor extends Document {
   name: string;
   email: string;
@@ -27,7 +26,6 @@ interface IMentor extends Document {
   updatedAt: Date;
 }
 
-// Define the Mentor schema
 const MentorSchema: Schema<IMentor> = new Schema(
   {
     name: {
@@ -81,11 +79,10 @@ const MentorSchema: Schema<IMentor> = new Schema(
     },
   },
   {
-    timestamps: true, // Automatically adds createdAt and updatedAt fields
+    timestamps: true,
   }
 );
 
-// Define and export the Mentor model
 const Mentor: Model<IMentor> = mongoose.model<IMentor>('Mentor', MentorSchema);
 export default Mentor;
 

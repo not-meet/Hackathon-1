@@ -7,8 +7,8 @@ interface AuthenticatedRequest extends NextApiRequest {
   user?: {
     id: string;
     email: string;
-    // Add other user properties if necessary
-  };
+
+  }
 
 }
 
@@ -17,13 +17,13 @@ const deleteBlogHandler = async (req: AuthenticatedRequest, res: NextApiResponse
 
   if (req.method === 'DELETE') {
     try {
-      const { blogId } = req.query; // Get the blog ID from query parameters
+      const { blogId } = req.query;
 
       if (!req.user) return res.status(401).json({ error: 'Unauthorized' });
 
       const mentorId = req.user.id;
 
-      // Remove blog from mentor's profile
+
       await Mentor.findByIdAndUpdate(
         mentorId,
         { $pull: { blogs: { _id: blogId } } },

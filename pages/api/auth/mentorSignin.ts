@@ -13,7 +13,6 @@ const mentorSigninHandler = async (req: NextApiRequest, res: NextApiResponse) =>
 
   if (req.method === 'POST') {
     try {
-      // Manually validate the request body
       try {
         mentorSigninSchema.parse(req.body);
       } catch (error) {

@@ -8,7 +8,7 @@ interface AuthenticatedRequest extends NextApiRequest {
   user?: {
     id: string;
     email: string;
-    // Add other user properties if necessary
+
   };
 }
 

@@ -10,11 +10,9 @@ const mentorSignupHandler = async (req: NextApiRequest, res: NextApiResponse) =>
 
   if (req.method === 'POST') {
     try {
-      // Validate the request body using the middleware
       validate(mentorSignupSchema)(req, res, async () => {
         const { name, email, password, bio, expertise, age, degree, specialization, experience, placesWorked } = req.body;
 
-        // Hash the password before saving
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const mentor = new Mentor({

@@ -1,12 +1,11 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-// Define the Mentee interface extending Mongoose Document
 export interface IMentee extends Document {
   name: string;
   email: string;
   password: string;
   profileImage?: string;
-  enrolledCourses?: string[];  // Array of Course IDs
+  enrolledCourses?: string[];
   reviews?: {
     mentorId: string;
     rating: number;
@@ -21,7 +20,6 @@ export interface IMentee extends Document {
   updatedAt?: Date;
 }
 
-// Define the Mentee Schema
 const MenteeSchema: Schema = new Schema(
   {
     name: { type: String, required: true },
@@ -42,9 +40,8 @@ const MenteeSchema: Schema = new Schema(
       endDate: { type: Date },
     },
   },
-  { timestamps: true } // Adds createdAt and updatedAt fields
+  { timestamps: true }
 );
 
-// Export the Mentee model
 export default mongoose.models.Mentee || mongoose.model<IMentee>('Mentee', MenteeSchema);
 

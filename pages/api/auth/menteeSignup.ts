@@ -10,11 +10,9 @@ const menteeSignupHandler = async (req: NextApiRequest, res: NextApiResponse) =>
 
   if (req.method === 'POST') {
     try {
-      // Validate the request body
       validate(menteeSignupSchema)(req, res, async () => {
         const { name, email, password, age, interests } = req.body;
 
-        // Hash the password before saving
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const mentee = new Mentee({

@@ -1,7 +1,7 @@
 // models/Course.ts
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
-// Define the interface for the Course document
+
 interface ICourse extends Document {
   title: string;
   description: string;
@@ -17,8 +17,6 @@ interface ICourse extends Document {
   createdAt?: Date;
   updatedAt?: Date;
 }
-
-// Define the schema for the Course model
 const CourseSchema: Schema<ICourse> = new Schema(
   {
     title: { type: String, required: true },
@@ -38,7 +36,6 @@ const CourseSchema: Schema<ICourse> = new Schema(
   { timestamps: true }
 );
 
-// Create and export the Course model
 const Course: Model<ICourse> = mongoose.model<ICourse>('Course', CourseSchema);
 export default Course;
 

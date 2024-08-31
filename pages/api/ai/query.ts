@@ -32,7 +32,7 @@ const queryAI = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const chatSession = model.startChat({
         generationConfig,
-        history: [], // You can add history here if needed
+        history: [],
       });
 
       const result = await chatSession.sendMessage(message);
