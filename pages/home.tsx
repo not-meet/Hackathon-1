@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import AiChatToggleButton from '../components/AiChatToggleButton';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
 const reviews = [
   {
     id: 1,
@@ -88,6 +88,7 @@ const HomePage: React.FC<HomePageProps> = ({ mentors = [] }) => {
         ))}
       </div>
 
+      {/* Other sections of the page */}
       <div className="flex mt-10 m-3 items-center justify-between bg-gradient-to-r from-blue-500 to-violet-600 h-72 shadow-lg rounded-lg p-6">
         <div className="flex-1">
           <h2 className="text-4xl font-bold text-white leading-snug">
@@ -186,7 +187,7 @@ const HomePage: React.FC<HomePageProps> = ({ mentors = [] }) => {
       <div className="text-center mt-12 mb-7">
         <div className="flex items-center justify-center">
           <div className="h-px w-24 bg-gradient-to-r from-transparent to-gray-400"></div>
-          <h2 className="text-4xl font-bold text-gray-800 mx-4">hear from our mentees</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mx-4"> Testimonials</h2>
           <div className="h-px w-24 bg-gradient-to-l from-transparent to-gray-400"></div>
         </div>
       </div>
@@ -212,29 +213,69 @@ const HomePage: React.FC<HomePageProps> = ({ mentors = [] }) => {
 
       <AiChatToggleButton />
       <Footer />
-
     </div>
   );
 };
 
-export default HomePage;
+// Mock Data
+export async function getServerSideProps() {
+  const mockMentors = [
+    {
+      id: 1,
+      name: 'John Doe',
+      image: 'wmen1.jpeg',
+      description: 'Software Engineer with 10 years of experience in web development.',
+    },
+    {
+      id: 2,
+      name: 'Jane Smith',
+      image: 'man2.jpg',
+      description: 'Frontend Developer specializing in React and Vue.js.',
+    },
+    {
+      id: 3,
+      name: 'Michael Johnson',
+      image: 'man3.avif',
+      description: 'DevOps Engineer focused on cloud infrastructure and automation.',
+    },
+    {
+      id: 4,
+      name: 'Emily Davis',
+      image: 'wmen1.jpeg',
+      description: 'UX/UI Designer with a passion for creating intuitive user experiences.',
+    },
+    {
+      id: 5,
+      name: 'David Brown',
+      image: 'man2.jpg',
+      description: 'Full-Stack Developer with expertise in Node.js and MongoDB.',
+    },
+    {
+      id: 6,
+      name: 'Sophia Wilson',
+      image: 'wmen1.jpeg',
+      description: 'Data Scientist skilled in machine learning and data visualization.',
+    },
+    {
+      id: 7,
+      name: 'James Taylor',
+      image: 'man3.avif',
+      description: 'Mobile Developer proficient in iOS and Android app development.',
+    },
+    {
+      id: 8,
+      name: 'Olivia Martinez',
+      image: 'man2.jpg',
+      description: 'Backend Developer specializing in Python and Django.',
+    },
+  ];
 
-// Fetch data for SSR
-export const getServerSideProps = async () => {
-  try {
-    const { data } = await axios.get<Mentor[]>('http://localhost:3000/api/home');
-    return {
-      props: {
-        mentors: data,
-      },
-    };
-  } catch (error) {
-    console.error('Failed to fetch mentors:', error);
-    return {
-      props: {
-        mentors: [],
-      },
-    };
-  }
-};
+  return {
+    props: {
+      mentors: mockMentors,
+    },
+  };
+}
+
+export default HomePage;
 
