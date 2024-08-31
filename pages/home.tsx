@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import AiChatToggleButton from '../components/AiChatToggleButton';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 const reviews = [
   {
     id: 1,
@@ -24,7 +26,7 @@ const reviews = [
   },
 ];
 
-type Mentor = {
+export type Mentor = {
   id: number;
   name: string;
   image: string;
@@ -39,28 +41,7 @@ const HomePage: React.FC<HomePageProps> = ({ mentors = [] }) => {
   return (
     <div className="min-h-screen bg-base-100">
       {/* Navbar */}
-      <nav className="navbar bg-white shadow-md px-4">
-        <div className="flex items-center flex-1">
-          <div className="mr-6">
-            <a className="text-2xl font-bold text-gray-900">MENTOR CONNECT</a>
-          </div>
-          <div>
-            <button className="btn outline-none bg-white mr-2 hover:shadow-md text-black">Home</button>
-            <button className="btn bg-white outline-none mr-2 hover:shadow-md text-black ml-2">About</button>
-            <button className="btn bg-white mr-2 hover:shadow-md text-black ml-2">Services</button>
-            <button className="btn bg-white mr-2 hover:shadow-md text-black ml-2">Contact</button>
-          </div>
-        </div>
-        <div className="flex-none">
-          <div className="form-control">
-            <input
-              type="text"
-              placeholder="Search"
-              className="input input-bordered shadow-md rounded-full bg-white"
-            />
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       {/* Banner Section */}
       <div
@@ -230,6 +211,7 @@ const HomePage: React.FC<HomePageProps> = ({ mentors = [] }) => {
       </div>
 
       <AiChatToggleButton />
+      <Footer />
 
     </div>
   );
