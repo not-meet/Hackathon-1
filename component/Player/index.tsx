@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import { Mic, MicOff, UserSquare2 } from 'lucide-react';
 
 interface PlayerProps {
-  url: MediaStream;
+  url: string;
   muted: boolean;
   playing: boolean;
   isActive: boolean;
