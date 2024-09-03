@@ -1,27 +1,39 @@
-import React from 'react';
-import ReactPlayer from 'react-player';
+import React, { useEffect, useRef } from 'react';
 import { Mic, MicOff, UserSquare2 } from 'lucide-react';
 
 interface PlayerProps {
-  url: string;
+  url: MediaStream;
   muted: boolean;
   playing: boolean;
   isActive: boolean;
 }
 
 const Player: React.FC<PlayerProps> = ({ url, muted, playing, isActive }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.srcObject = url;
+      if (playing) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [url, playing]);
+
   return (
     <div
-      className={`relative overflow-hidden mb-5 h-full ${isActive ? 'rounded-lg' : 'rounded-md h-min w-52 shadow-lg'
-        } ${!playing ? 'flex items-center justify-center' : ''}`}
+      className={`relative overflow-hidden mb-5 ${isActive ? 'rounded-lg h-full' : 'rounded-md h-min w-52 shadow-lg'} 
+        ${!playing ? 'flex items-center justify-center' : ''}`}
     >
       {playing ? (
-        <ReactPlayer
-          url={url}
+        <video
+          ref={videoRef}
           muted={muted}
-          playing={playing}
-          width="100%"
-          height="100%"
+          autoPlay
+          playsInline
+          className="w-full h-full object-cover"
         />
       ) : (
         <UserSquare2 className="text-white" size={isActive ? 400 : 150} />
