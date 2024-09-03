@@ -1,36 +1,49 @@
-// index.tsx
+import { v4 as uuidv4 } from 'uuid';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
-import axios from 'axios';
-import { GetServerSideProps } from 'next';
-import HomePage, { Mentor } from "./home";
+export default function Home() {
+  const router = useRouter();
+  const [roomId, setRoomId] = useState('');
 
-type Props = {
-  mentors: Mentor[];
-};
+  const createAndJoin = () => {
+    const newRoomId = uuidv4();
+    router.push(`/${newRoomId}`);
+  };
 
-export default function Home({ mentors }: Props) {
+  const joinRoom = () => {
+    if (roomId) {
+      router.push(`/${roomId}`);
+    } else {
+      alert('Please provide a valid room id');
+    }
+  };
+
   return (
-    <main className="min-h-screen bg-background-light">
-      <HomePage mentors={mentors} />
-    </main>
+    <div className="w-4/12 mx-auto p-4 border border-white rounded mt-8 text-white flex flex-col items-center">
+      <h1 className="text-xl text-center">Google Meet Clone</h1>
+      <div className="flex flex-col items-center mt-3 w-full">
+        <input
+          className="text-black text-lg p-2 rounded w-9/12 mb-3"
+          placeholder="Enter Room ID"
+          value={roomId}
+          onChange={(e) => setRoomId(e?.target?.value)}
+        />
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+          onClick={joinRoom}
+        >
+          Join Room
+        </button>
+      </div>
+      <span className="my-3 text-xl">--------------- OR ---------------</span>
+      <button
+        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+        onClick={createAndJoin}
+      >
+        Create a new room
+      </button>
+    </div>
   );
 }
 
-// Fetch data for SSR
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  try {
-    const { data } = await axios.get<Mentor[]>('http://localhost:3000/api/home');
-    return {
-      props: {
-        mentors: data,
-      },
-    };
-  } catch (error) {
-    console.error('Failed to fetch mentors:', error);
-    return {
-      props: {
-        mentors: [],
-      },
-    };
-  }
-};
